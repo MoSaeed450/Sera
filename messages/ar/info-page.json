@@ -1,0 +1,17 @@
+{
+    "tabs": {
+        "overview": "نظرة عامة",
+        "faithWorship": "الإيمان والعبادات",
+        "ethicsConduct": "الأخلاق والسلوك",
+        "socialLegal": "القضايا الاجتماعية والفقهية"
+    },
+    "hadith": {
+        "hadithNumber": "الحديث",
+        "narrator": "الراوي",
+        "source": "المصدر",
+        "showClarification": "إظهار التوضيح",
+        "hideClarification": "إخفاء التوضيح",
+        "clarificationLabel": "التوضيح:",
+        "of": "من"
+    }
+}

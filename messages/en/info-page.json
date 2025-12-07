@@ -1,0 +1,17 @@
+{
+    "tabs": {
+        "overview": "Overview",
+        "faithWorship": "Faith & Worship",
+        "ethicsConduct": "Ethics & Conduct",
+        "socialLegal": "Social & Legal"
+    },
+    "hadith": {
+        "hadithNumber": "Hadith",
+        "narrator": "Narrator",
+        "source": "Source",
+        "showClarification": "Show Clarification",
+        "hideClarification": "Hide Clarification",
+        "clarificationLabel": "Clarification:",
+        "of": "of"
+    }
+}
