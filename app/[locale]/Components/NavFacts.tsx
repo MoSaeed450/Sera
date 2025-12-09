@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState, useEffect } from 'react';
+import { useLocale } from 'next-intl';
 import { Link } from '@/i18n/routing';
 import { useTranslations } from 'next-intl';
 import { cn } from './cn';
@@ -41,16 +42,19 @@ export default function NavFacts({ currentScene, onSceneChange, onNavigate, show
     const [rotateDirection, setRotateDirection] = useState<'left' | 'right'>('right');
     const [hoveredButton, setHoveredButton] = useState<number | null>(null);
     const hideTimeoutRef = React.useRef<NodeJS.Timeout | null>(null);
-    const [isArabic, setIsArabic] = useState(false);
+      const locale = useLocale();
+    
+      const isArabic = locale === "ar";
+    // const [isArabic, setIsArabic] = useState(false);
 
-    useEffect(() => {
-        setIsArabic(document.documentElement.lang === 'ar');
-        const interval = setInterval(() => {
-            setRotateDirection(prev => prev === 'right' ? 'left' : 'right');
-        }, 4000);
+    // useEffect(() => {
+    //         setIsArabic(document.documentElement.lang === 'ar');
+    //     const interval = setInterval(() => {
+    //         setRotateDirection(prev => prev === 'right' ? 'left' : 'right');
+    //     }, 4000);
 
-        return () => clearInterval(interval);
-    }, []);
+    //     return () => clearInterval(interval);
+    // }, []);
 
     const handleMouseEnter = () => {
         if (hideTimeoutRef.current) {

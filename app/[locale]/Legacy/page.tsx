@@ -38,6 +38,7 @@ interface OverviewItem {
 
 export default function InfoPage() {
   const t = useTranslations('InfoPage');
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const messages = useMessages() as any;
 
   const prophetOverview = (messages.Overview || []) as OverviewItem[];
@@ -48,7 +49,7 @@ export default function InfoPage() {
   const [activeTab, setActiveTab] = useState<TabType>('overview');
   const [currentIndex, setCurrentIndex] = useState(0);
   const [showClarification, setShowClarification] = useState(false);
-  const [mounted, setMounted] = useState(false);
+  const [mounted, setMounted] = useState(true);
 
   const patternRef = useRef(null);
   const pattern2Ref = useRef(null);
@@ -60,8 +61,6 @@ export default function InfoPage() {
   const isArabic = locale === "ar";
 
   const { theme, setTheme } = useTheme();
-
-  useEffect(() => setMounted(true), []);
 
   useGSAP(() => {
     const tl2 = gsap.timeline();
@@ -271,7 +270,7 @@ export default function InfoPage() {
                 onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
                 className="cursor-pointer p-3 rounded-full border-2 border-[#d4a373] dark:border-amber-100/80 bg-white/25 dark:bg-gray-800 hover:bg-[#d4a373] dark:hover:bg-[#d4a373]/30 shadow-lg"
               >
-                {theme === 'dark' ? <svg  className="dark:text-white lucide lucide-sun-icon lucide-sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="4" /><path d="M12 2v2" /><path d="M12 20v2" /><path d="m4.93 4.93 1.41 1.41" /><path d="m17.66 17.66 1.41 1.41" /><path d="M2 12h2" /><path d="M20 12h2" /><path d="m6.34 17.66-1.41 1.41" /><path d="m19.07 4.93-1.41 1.41" /></svg> : <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-moon-icon lucide-moon"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401" /></svg>}
+                {theme === 'dark' ? <svg className="dark:text-white lucide lucide-sun-icon lucide-sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="4" /><path d="M12 2v2" /><path d="M12 20v2" /><path d="m4.93 4.93 1.41 1.41" /><path d="m17.66 17.66 1.41 1.41" /><path d="M2 12h2" /><path d="M20 12h2" /><path d="m6.34 17.66-1.41 1.41" /><path d="m19.07 4.93-1.41 1.41" /></svg> : <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-moon-icon lucide-moon"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401" /></svg>}
               </button>
             )}
           </div>
@@ -306,7 +305,7 @@ export default function InfoPage() {
               <a href="https://dorar.net/" className='opacity-40 hover:opacity-80 font-bold'>{t('general.dorar')}</a>
             </div>
             <div className='text-[22px] flex items-center gap-2 opacity-80 self-start border-t border-[#6b4423]/50 pt-4 w-full'>
-              <svg xmlns="http://www.w3.org/2000/svg" height="35" viewBox="0 0 36 36"><path fill="#ef9645" d="M26.992 19.016a3.5 3.5 0 0 0-.875-.636l-.4-1.356-8.012-.056-.307 1.091a3.2 3.2 0 0 0-1.393.718l-3.611-3.954a2.34 2.34 0 0 0-1.389 2.133v.96l-4 4.166.016 2.188 9.984 10.729s10.518-15.288 10.543-15.258c-.127-.224-.511-.703-.556-.725"/><g fill="#ffdc5d"><path d="M24.581 18H18q-.312 0-.607.061l-.073-.278-3.273-12.464s-.416-1.957 1.54-2.372c1.956-.416 2.372 1.54 2.372 1.54l3.097 11.569a27 27 0 0 1 1.305.107l2.061-10.512s.188-1.991 2.18-1.804c1.991.188 1.803 2.179 1.803 2.179L26.34 17.187l-.221 1.194A3.4 3.4 0 0 0 24.581 18M8.916 16h.168c1.059 0 1.916.858 1.916 1.917v4.166A1.916 1.916 0 0 1 9.084 24h-.168A1.916 1.916 0 0 1 7 22.083v-4.166C7 16.858 7.857 16 8.916 16m6.918 2.96-.056.062A2.95 2.95 0 0 0 15 21c0 .063.013.123.018.185.044.678.308 1.292.728 1.774a2 2 0 0 1-.259.353A1.97 1.97 0 0 1 14 24a2 2 0 0 1-2-2v-6c0-.441.147-.845.389-1.176A2 2 0 0 1 14 14a2 2 0 0 1 2 2v2.778c-.061.055-.109.123-.166.182"/><path d="M9.062 25a2.93 2.93 0 0 0 2.45-1.322c.123.183.271.346.431.497 1.185 1.115 3.034 1.044 4.167-.086.152-.152.303-.305.419-.488l-.003-.003C16.727 23.713 17 24 18 24h2.537a6.4 6.4 0 0 0-1.024 1c-1.228 1.467-2.013 3.606-2.013 6a.5.5 0 0 0 1 0c0-2.548.956-4.775 2.377-6 .732-.631 1.584-1 2.498-1 .713.079.847-1 .125-1H18a2 2 0 0 1 0-4h8c.858 0 1.66.596 1.913 1.415L29 24c.103.335.479 1.871.411 2.191C29.411 31 24.715 36 19 36c-6.537 0-11.844-5.231-11.986-11.734l.014.01a2.9 2.9 0 0 0 1.91.724z"/></g></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" height="35" viewBox="0 0 36 36"><path fill="#ef9645" d="M26.992 19.016a3.5 3.5 0 0 0-.875-.636l-.4-1.356-8.012-.056-.307 1.091a3.2 3.2 0 0 0-1.393.718l-3.611-3.954a2.34 2.34 0 0 0-1.389 2.133v.96l-4 4.166.016 2.188 9.984 10.729s10.518-15.288 10.543-15.258c-.127-.224-.511-.703-.556-.725" /><g fill="#ffdc5d"><path d="M24.581 18H18q-.312 0-.607.061l-.073-.278-3.273-12.464s-.416-1.957 1.54-2.372c1.956-.416 2.372 1.54 2.372 1.54l3.097 11.569a27 27 0 0 1 1.305.107l2.061-10.512s.188-1.991 2.18-1.804c1.991.188 1.803 2.179 1.803 2.179L26.34 17.187l-.221 1.194A3.4 3.4 0 0 0 24.581 18M8.916 16h.168c1.059 0 1.916.858 1.916 1.917v4.166A1.916 1.916 0 0 1 9.084 24h-.168A1.916 1.916 0 0 1 7 22.083v-4.166C7 16.858 7.857 16 8.916 16m6.918 2.96-.056.062A2.95 2.95 0 0 0 15 21c0 .063.013.123.018.185.044.678.308 1.292.728 1.774a2 2 0 0 1-.259.353A1.97 1.97 0 0 1 14 24a2 2 0 0 1-2-2v-6c0-.441.147-.845.389-1.176A2 2 0 0 1 14 14a2 2 0 0 1 2 2v2.778c-.061.055-.109.123-.166.182" /><path d="M9.062 25a2.93 2.93 0 0 0 2.45-1.322c.123.183.271.346.431.497 1.185 1.115 3.034 1.044 4.167-.086.152-.152.303-.305.419-.488l-.003-.003C16.727 23.713 17 24 18 24h2.537a6.4 6.4 0 0 0-1.024 1c-1.228 1.467-2.013 3.606-2.013 6a.5.5 0 0 0 1 0c0-2.548.956-4.775 2.377-6 .732-.631 1.584-1 2.498-1 .713.079.847-1 .125-1H18a2 2 0 0 1 0-4h8c.858 0 1.66.596 1.913 1.415L29 24c.103.335.479 1.871.411 2.191C29.411 31 24.715 36 19 36c-6.537 0-11.844-5.231-11.986-11.734l.014.01a2.9 2.9 0 0 0 1.91.724z" /></g></svg>
               <svg xmlns="http://www.w3.org/2000/svg" className='' height="35" viewBox="0 0 36 36"><path fill="#141414" d="M32 5H4a4 4 0 0 0-4 4v4.5h36V9a4 4 0 0 0-4-4" /><path fill="#007229" d="M0 27a4 4 0 0 0 4 4h28a4 4 0 0 0 4-4v-4.5H0z" /><path fill="#eee" d="M0 13.5h36v9H0z" /><path fill="#d21034" d="M1.351 6.004zA4 4 0 0 0 0 9v18c0 1.193.522 2.264 1.351 2.997L17.5 18z" /></svg>
             </div>
           </div>

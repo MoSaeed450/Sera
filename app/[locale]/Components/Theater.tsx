@@ -71,21 +71,6 @@ export default function Theater() {
     return () => clearTimeout(timer)
   }, [currentScene])
 
-  useEffect(() => {
-    const handleKeyboard = (e: KeyboardEvent) => {
-      if (e.key === 'ArrowRight') {
-        navigateScene('next')
-      } else if (e.key === 'ArrowLeft') {
-        navigateScene('prev')
-      }
-    }
-
-    window.addEventListener('keydown', handleKeyboard)
-    return () => {
-      window.removeEventListener('keydown', handleKeyboard)
-    }
-  }, [currentScene])
-
   const goToScene = (index: number) => {
     if (index === currentScene) return
 
@@ -118,6 +103,21 @@ export default function Theater() {
       : Math.max(currentScene - 1, 0)
     goToScene(newScene)
   }
+
+  useEffect(() => {
+    const handleKeyboard = (e: KeyboardEvent) => {
+      if (e.key === 'ArrowRight') {
+        navigateScene('next')
+      } else if (e.key === 'ArrowLeft') {
+        navigateScene('prev')
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyboard)
+    return () => {
+      window.removeEventListener('keydown', handleKeyboard)
+    }
+  }, [currentScene, navigateScene])
 
   return (
     <>

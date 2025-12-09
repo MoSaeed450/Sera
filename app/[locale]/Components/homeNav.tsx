@@ -81,7 +81,7 @@ export default function HomeNav() {
                 Disclaimer
               </h3>
               <p className="text-white text-sm leading-relaxed">
-                This website presents historical information about Prophet Muhammad's life based on traditional Islamic sources. While we strive for accuracy, interpretations may vary. Please consult qualified scholars for religious guidance.
+                This website presents historical information about Prophet Muhammads life based on traditional Islamic sources. While we strive for accuracy, interpretations may vary. Please consult qualified scholars for religious guidance.
               </p>
             </div>
           </div>
