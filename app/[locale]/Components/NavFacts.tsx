@@ -115,7 +115,7 @@ export default function NavFacts({ currentScene, onSceneChange, onNavigate, show
     return (
         <>
             {showNav && (
-                <div className={`fixed bottom-8 z-[1000] flex items-center gap-4 ${isArabic ? 'right-8 flex-row-reverse' : 'left-8'}`}>
+                <div className={`fixed bottom-8 z-1000 flex items-center gap-4 ${isArabic ? 'right-8 flex-row-reverse' : 'left-8'}`}>
                     <div
                         className="relative flex items-center gap-4"
                         onMouseEnter={handleMouseEnter}
@@ -176,7 +176,7 @@ export default function NavFacts({ currentScene, onSceneChange, onNavigate, show
 
                         <button
                             className={cn(
-                                "group relative backdrop-blur-2xl w-14 h-14 rounded-full transition-all duration-300",
+                                "group relative backdrop-blur-2xl text-white w-14 h-14 rounded-full transition-all duration-300",
                                 "border border-white/20 shadow-lg hover:shadow-2xl",
                                 "flex items-center justify-center cursor-pointer",
                                 "opacity-40 hover:opacity-100",

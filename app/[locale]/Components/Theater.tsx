@@ -37,8 +37,8 @@ export default function Theater() {
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY
-      const heroSectionHeight = window.innerHeight * 4
-      const sceneHeight = window.innerHeight * 3.6
+      const heroSectionHeight = window.innerHeight * 5.8
+      const sceneHeight = window.innerHeight * 2.3
 
       if (scrollY < heroSectionHeight) {
         setShowNav(false)
@@ -89,8 +89,8 @@ export default function Theater() {
   const goToScene = (index: number) => {
     if (index === currentScene) return
 
-    const heroSectionHeight = window.innerHeight * 4
-    const targetScroll = (index + 1) * (window.innerHeight * 3.5) + heroSectionHeight
+    const heroSectionHeight = window.innerHeight * 3
+    const targetScroll = (index + 1) * (window.innerHeight * 2.6) + heroSectionHeight
     const tl = gsap.timeline()
 
     tl.to(blurOverlayRef.current, {
@@ -141,7 +141,7 @@ export default function Theater() {
 
           if (isLastScene) {
             return (
-              <div key={scene.id} className="relative z-40" style={{ height: '500vh' }}>
+              <div key={scene.id} className="relative z-40" style={{ height: '350vh' }}>
                 {shouldRender && (
                   <div className="sticky top-0 z-40 h-screen">
                     <Scene
@@ -160,7 +160,7 @@ export default function Theater() {
           return (
             <div
               key={scene.id}
-              className="sticky top-0 z-40 h-[350vh]"
+              className="sticky top-0 z-40 h-[250vh]"
             >
               {shouldRender && (
                 <Scene

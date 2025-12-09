@@ -1,4 +1,10 @@
 {
+    "general": {
+        "disclaimer": "The Forty Nawawi Hadiths on this website are organized into three categories (Faith & Worship – Ethics & Conduct – Social & Jurisprudential Matters) solely to make navigation easier. This categorization is for organizational purposes only and does not represent any official or scholarly classification, nor does it alter the meaning or authenticity of the hadiths",
+        "sources" : "Sources :" ,
+        "sunnah" : "Sunnah.com",
+        "dorar" : "dorar.net"
+    },
     "tabs": {
         "overview": "Overview",
         "faithWorship": "Faith & Worship",

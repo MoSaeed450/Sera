@@ -17,7 +17,7 @@ export default function HomeNav() {
         <Link href="/Legacy">
           <button
             className={cn(
-              "group relative backdrop-blur-2xl w-14 h-14 rounded-full transition-all duration-300",
+              "group relative backdrop-blur-2xl text-white w-14 h-14 rounded-full transition-all duration-300",
               "border border-gray-300 shadow-lg hover:shadow-2xl",
               "flex items-center justify-center cursor-pointer",
               "opacity-100",
@@ -88,7 +88,7 @@ export default function HomeNav() {
 
           <button
             className={cn(
-              "group relative backdrop-blur-2xl w-14 h-14 rounded-full transition-all duration-300",
+              "group relative backdrop-blur-2xl w-14 h-14 text-white rounded-full transition-all duration-300",
               "border border-gray-300 shadow-lg hover:shadow-2xl",
               "flex items-center justify-center cursor-pointer",
               "opacity-100",

@@ -1,9 +1,10 @@
 'use client'
 
-import React, { useEffect, useLayoutEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { useTranslations, useLocale } from 'next-intl';
 import { cn } from "./cn";
 import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
 
@@ -28,7 +29,7 @@ export default function Scene({ sceneKey, id, index, image, isLast }: sceneProps
   const titleRef = useRef(null);
   const yearRef = useRef(null);
 
-  useEffect(() => {
+  useGSAP(() => {
 
     let splitInstance: SplitText | null = null;
 
@@ -39,7 +40,7 @@ export default function Scene({ sceneKey, id, index, image, isLast }: sceneProps
         duration: 28,
         repeat: -1,
         yoyo: true,
-        ease: "power1.inOut"
+        ease: "power2.inOut"
       });
 
       const tl = gsap.timeline({
@@ -137,150 +138,6 @@ export default function Scene({ sceneKey, id, index, image, isLast }: sceneProps
     };
   }, [index, t, isArabic])
 
-  // useEffect(() => {
-  //   const ctx = gsap.context(() => {
-  //     const heroHeight = window.innerHeight * 3;
-  //     const sceneHeight = window.innerHeight * 3.5;
-  //     const startScroll = heroHeight + index * sceneHeight;
-
-  //     // Image fade in
-  //     gsap.fromTo(
-  //       sceneRef.current,
-  //       { opacity: 0 },
-  //       {
-  //         opacity: 1,
-  //         scrollTrigger: {
-  //           trigger: "body",
-  //           start: () => startScroll,
-  //           end: () => startScroll + (sceneHeight * 1),
-  //           scrub: 1,
-  //         }
-  //       }
-  //     );
-
-  //     // Continuous scale animation
-  //     gsap.to(sceneRef.current, {
-  //       scale: 1.1,
-  //       duration: 28,
-  //       repeat: -1,
-  //       yoyo: true,
-  //       ease: "power1.inOut"
-  //     });
-
-  //     // Title animation
-  //     if (titleRef.current) {
-  //       gsap.fromTo(
-  //         titleRef.current,
-  //         {
-  //           opacity: 0,
-  //           filter: "blur(10px)",
-  //           y: 20
-  //         },
-  //         {
-  //           opacity: 1,
-  //           filter: "blur(0px)",
-  //           y: 0,
-  //           scrollTrigger: {
-  //             trigger: "body",
-  //             start: () => startScroll + (sceneHeight * 0.2),
-  //             end: () => startScroll + (sceneHeight * 0.35),
-  //             scrub: 1,
-  //           }
-  //         }
-  //       );
-  //     }
-
-  //     // Year animation
-  //     if (yearRef.current) {
-  //       gsap.fromTo(
-  //         yearRef.current,
-  //         {
-  //           opacity: 0,
-  //           filter: "blur(10px)",
-  //           y: 20
-  //         },
-  //         {
-  //           opacity: 1,
-  //           filter: "blur(0px)",
-  //           y: 0,
-  //           scrollTrigger: {
-  //             trigger: "body",
-  //             start: () => startScroll + (sceneHeight * 0.3),
-  //             end: () => startScroll + (sceneHeight * 0.45),
-  //             scrub: 1,
-  //           }
-  //         }
-  //       );
-  //     }
-
-  //     // Paragraph animation
-  //     if (paragraphRef.current) {
-  //       if (isArabic) {
-  //         // Simple fade-in for Arabic to avoid SplitText issues
-  //         gsap.fromTo(
-  //           paragraphRef.current,
-  //           {
-  //             opacity: 0,
-  //             y: 30,
-  //             filter: "blur(10px)",
-  //           },
-  //           {
-  //             opacity: 1,
-  //             y: 0,
-  //             filter: "blur(0px)",
-  //             duration: 1,
-  //             ease: "power2.out",
-  //             scrollTrigger: {
-  //               trigger: "body",
-  //               start: () => startScroll + (sceneHeight * 0.5),
-  //               end: () => startScroll + (sceneHeight * 0.75),
-  //               scrub: 1.5,
-  //             }
-  //           }
-  //         );
-  //       } else {
-  //         // SplitText for English
-  //         document.fonts.ready.then(() => {
-  //           if (!paragraphRef.current) return;
-
-  //           const split = new SplitText(paragraphRef.current, {
-  //             type: "lines",
-  //             linesClass: "split-line"
-  //           });
-
-  //           const allLines: HTMLElement[] = split.lines.map(line => line as HTMLElement);
-
-  //           gsap.fromTo(
-  //             allLines,
-  //             {
-  //               opacity: 0,
-  //               filter: "blur(10px)",
-  //               y: 30
-  //             },
-  //             {
-  //               opacity: 1,
-  //               filter: "blur(0px)",
-  //               y: 0,
-  //               stagger: 0.25,
-  //               ease: "power2.out",
-  //               scrollTrigger: {
-  //                 trigger: "body",
-  //                 start: () => startScroll + (sceneHeight * 0.5),
-  //                 end: () => startScroll + (sceneHeight * 0.75),
-  //                 scrub: 1.5,
-  //               }
-  //             }
-  //           );
-
-  //           return () => split.revert();
-  //         });
-  //       }
-  //     }
-
-  //   }, containerRef);
-
-  //   return () => ctx.revert();
-  // }, [index, t, isArabic]);
   return (
     <section
       ref={containerRef}
@@ -308,3 +165,148 @@ export default function Scene({ sceneKey, id, index, image, isLast }: sceneProps
     </section>
   );
 }
+
+// useEffect(() => {
+//   const ctx = gsap.context(() => {
+//     const heroHeight = window.innerHeight * 3;
+//     const sceneHeight = window.innerHeight * 3.5;
+//     const startScroll = heroHeight + index * sceneHeight;
+
+//     // Image fade in
+//     gsap.fromTo(
+//       sceneRef.current,
+//       { opacity: 0 },
+//       {
+//         opacity: 1,
+//         scrollTrigger: {
+//           trigger: "body",
+//           start: () => startScroll,
+//           end: () => startScroll + (sceneHeight * 1),
+//           scrub: 1,
+//         }
+//       }
+//     );
+
+//     // Continuous scale animation
+//     gsap.to(sceneRef.current, {
+//       scale: 1.1,
+//       duration: 28,
+//       repeat: -1,
+//       yoyo: true,
+//       ease: "power1.inOut"
+//     });
+
+//     // Title animation
+//     if (titleRef.current) {
+//       gsap.fromTo(
+//         titleRef.current,
+//         {
+//           opacity: 0,
+//           filter: "blur(10px)",
+//           y: 20
+//         },
+//         {
+//           opacity: 1,
+//           filter: "blur(0px)",
+//           y: 0,
+//           scrollTrigger: {
+//             trigger: "body",
+//             start: () => startScroll + (sceneHeight * 0.2),
+//             end: () => startScroll + (sceneHeight * 0.35),
+//             scrub: 1,
+//           }
+//         }
+//       );
+//     }
+
+//     // Year animation
+//     if (yearRef.current) {
+//       gsap.fromTo(
+//         yearRef.current,
+//         {
+//           opacity: 0,
+//           filter: "blur(10px)",
+//           y: 20
+//         },
+//         {
+//           opacity: 1,
+//           filter: "blur(0px)",
+//           y: 0,
+//           scrollTrigger: {
+//             trigger: "body",
+//             start: () => startScroll + (sceneHeight * 0.3),
+//             end: () => startScroll + (sceneHeight * 0.45),
+//             scrub: 1,
+//           }
+//         }
+//       );
+//     }
+
+//     // Paragraph animation
+//     if (paragraphRef.current) {
+//       if (isArabic) {
+//         // Simple fade-in for Arabic to avoid SplitText issues
+//         gsap.fromTo(
+//           paragraphRef.current,
+//           {
+//             opacity: 0,
+//             y: 30,
+//             filter: "blur(10px)",
+//           },
+//           {
+//             opacity: 1,
+//             y: 0,
+//             filter: "blur(0px)",
+//             duration: 1,
+//             ease: "power2.out",
+//             scrollTrigger: {
+//               trigger: "body",
+//               start: () => startScroll + (sceneHeight * 0.5),
+//               end: () => startScroll + (sceneHeight * 0.75),
+//               scrub: 1.5,
+//             }
+//           }
+//         );
+//       } else {
+//         // SplitText for English
+//         document.fonts.ready.then(() => {
+//           if (!paragraphRef.current) return;
+
+//           const split = new SplitText(paragraphRef.current, {
+//             type: "lines",
+//             linesClass: "split-line"
+//           });
+
+//           const allLines: HTMLElement[] = split.lines.map(line => line as HTMLElement);
+
+//           gsap.fromTo(
+//             allLines,
+//             {
+//               opacity: 0,
+//               filter: "blur(10px)",
+//               y: 30
+//             },
+//             {
+//               opacity: 1,
+//               filter: "blur(0px)",
+//               y: 0,
+//               stagger: 0.25,
+//               ease: "power2.out",
+//               scrollTrigger: {
+//                 trigger: "body",
+//                 start: () => startScroll + (sceneHeight * 0.5),
+//                 end: () => startScroll + (sceneHeight * 0.75),
+//                 scrub: 1.5,
+//               }
+//             }
+//           );
+
+//           return () => split.revert();
+//         });
+//       }
+//     }
+
+//   }, containerRef);
+
+//   return () => ctx.revert();
+// }, [index, t, isArabic]);
