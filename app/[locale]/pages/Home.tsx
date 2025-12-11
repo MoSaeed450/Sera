@@ -7,6 +7,7 @@ import ScrollTrigger from 'gsap/ScrollTrigger';
 import { useTranslations } from 'next-intl';
 import { useGSAP } from '@gsap/react';
 import Image from 'next/image';
+import LightRays from '../Components/Lightrays';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -116,9 +117,22 @@ export default function Home() {
       className='min-h-screen relative'
       style={{ willChange: 'opacity' }}
     >
+<div className='absolute' style={{ width: '100%', height: '100%'}}>
+  <LightRays
+    raysOrigin="top-center"
+    raysColor="#ffffff"
+    raysSpeed={1.5}
+    lightSpread={0.8}
+    rayLength={1.2}
+    followMouse={true}
+    mouseInfluence={0}
+    noiseAmount={0.1}
+    distortion={0.05}
+    className="custom-rays"
+  />
+</div>
       {/* <div ref={maskRef}></div> */}
       <div className='relative'>
-
         <div
           ref={navRef}
           className='px-5 pt-1 absolute w-screen z-999'>
