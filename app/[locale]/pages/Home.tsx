@@ -81,7 +81,7 @@ export default function Home() {
 
 
       tl.fromTo([heroRef.current], {
-        scale: 10,
+        scale: 11.5,
         transformOrigin: 'center center', // 👈 أضفها هنا
         force3D: true,
         immediateRender: true,

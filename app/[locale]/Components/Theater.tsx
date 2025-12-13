@@ -33,12 +33,19 @@ export default function Theater() {
   const blurOverlayRef = useRef<HTMLDivElement>(null)
   const [currentScene, setCurrentScene] = useState(0)
   const [showNav, setShowNav] = useState(false)
+  const [hasReachedScenes, setHasReachedScenes] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY
-      const heroSectionHeight = window.innerHeight * 5.8
-      const sceneHeight = window.innerHeight * 2.3
+      const heroSectionHeight = window.innerHeight * 7.5
+      const sceneHeight = window.innerHeight * 2.5
+
+      // Check if user is approaching the scenes area (with buffer before hero ends)
+      const approachBuffer = window.innerHeight * .8 // Start loading 1.5 viewports before scenes
+      if (scrollY >= heroSectionHeight - approachBuffer) {
+        setHasReachedScenes(true)
+      }
 
       if (scrollY < heroSectionHeight) {
         setShowNav(false)
@@ -137,7 +144,8 @@ export default function Theater() {
       <div className="relative z-30 min-h-screen">
         {scenesData.map((scene, index) => {
           const isLastScene = index === scenesData.length - 1;
-          const shouldRender = Math.abs(currentScene - index) <= 2;
+          // Only render scenes if user has reached the scenes area AND scene is close to current
+          const shouldRender = hasReachedScenes && Math.abs(currentScene - index) <= 2;
 
           if (isLastScene) {
             return (
