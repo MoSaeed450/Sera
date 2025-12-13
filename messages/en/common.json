@@ -7,5 +7,7 @@
     "nextScene": "Next Scene",
     "goToScene": "Go to scene",
     "hero1": "Scroll to view Sera",
-    "hero2": "Press F11 to get a better experience"
+    "hero2": "Press F11 to get a better experience",
+    "disclaimer": "Disclaimer" ,
+    "disclaimertext": "This website presents historical information about Prophet Muhammads life based on traditional Islamic sources. While we strive for accuracy, interpretations may vary. Please consult qualified scholars for religious guidance."
 }

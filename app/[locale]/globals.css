@@ -4,27 +4,26 @@
   --background: #ffffff;
   --foreground: #171717;
 
-  /* font variables */
+
   --font-cinzel: var(--font-cinzel);
   --font-cormorant: var(--font-cormorant);
   --font-amiri: var(--font-amiri);
   --font-spectral: var(--font-spectral);
   --font-cairo: var(--font-cairo);
   --font-tajwal: var(--font-tajwal);
-  --font-ghorab: var(--font-ghorab);
   --font-karla: var(--font-karla);
+  --font-ghorab: var(--font-ghorab);
+  --font-thuluth: var(--font-thuluth);
 }
 
-:root[lang="ar"] body,
-:root[lang="ar"] h2,
-:root[lang="ar"] h3,
-:root[lang="ar"] p,
-:root[lang="ar"] span {
-  font-family: var(--font-cairo), sans-serif !important;
-}
 
-:root[lang="ar"] h1 {
-  font-family: var(--font-ghorab), sans-serif !important;
+@supports (font-family: var(--font-ghorab)) {
+  @font-face {
+    font-family: 'GhorabArabicOnly';
+    src: local('Ghorab'), url('../fonts/ghorab.otf') format('opentype');
+    unicode-range: U+0600-06FF, U+0750-077F, U+08A0-08FF, U+FB50-FDFF, U+FE70-FEFF;
+    font-display: swap;
+  }
 }
 
 @theme inline {
@@ -32,6 +31,9 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  
+  --font-body: var(--font-cairo), var(--font-karla), sans-serif;
+  --font-heading: GhorabArabicOnly, var(--font-cinzel), sans-serif;
 }
 
 @variant dark (&:where(.dark, .dark *));
@@ -39,26 +41,24 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
-    /* --foreground: #ededed; */
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-karla) , sans-serif ;
-  /* transition: background-color 0.3s ease, color 0.3s ease; */
+  font-family: var(--font-body);
+  /* text-shadow:
+    0 2px .5px rgba(0, 0, 0, 0.8),
+    0 0 10px rgba(0, 0, 0, 0.6); */
+}
+.hero{
+  font-family: var(--font-thuluth);
+  transform-origin: end;
 }
 
-h1{
-  font-family: var(--font-cinzel);
-}
-
-p {
-  /* font-family: var(--font-spectral); */
-  text-shadow:
-    0 2px 8px rgba(0, 0, 0, 0.8),
-    0 0 20px rgba(0, 0, 0, 0.6);
+h1 {
+  font-family: var(--font-heading);
 }
 
 * {
@@ -69,10 +69,3 @@ p {
 *::-webkit-scrollbar {
   display: none;
 }
-
-/* Apply transition to all elements using dark mode variants */
-/* [class*="dark:"] {
-  transition-property: all;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 300ms;
-} */

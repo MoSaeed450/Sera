@@ -7,6 +7,7 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
+import Image from "next/image";
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
@@ -26,8 +27,7 @@ export default function Scene({ sceneKey, id, index, image, isLast }: sceneProps
   const containerRef = useRef(null);
   const sceneRef = useRef(null);
   const paragraphRef = useRef<HTMLParagraphElement>(null);
-  const titleRef = useRef(null);
-  const yearRef = useRef(null);
+  const headerRef = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
 
@@ -47,8 +47,8 @@ export default function Scene({ sceneKey, id, index, image, isLast }: sceneProps
         scrollTrigger: {
           trigger: containerRef.current,
 
-          start: 'top 50%',
-          end: 'bottom top',
+          start: 'top top',
+          end: 'bottom bottom',
 
           scrub: 1,
           pin: false,
@@ -61,13 +61,14 @@ export default function Scene({ sceneKey, id, index, image, isLast }: sceneProps
         { opacity: 0 },
         {
           opacity: 1,
-          duration: 25,
-          ease: 'power2.inOut'
-        }, 15);
+          duration: 4,
+          ease: 'power1.inOut'
+        }, 2);
 
-      if (titleRef.current) {
+      if (headerRef.current) {
+        const headerChildren = gsap.utils.toArray(headerRef.current.children);
         tl.fromTo(
-          titleRef.current,
+          headerChildren,
           {
             opacity: 0,
             filter: "blur(10px)",
@@ -77,26 +78,10 @@ export default function Scene({ sceneKey, id, index, image, isLast }: sceneProps
             opacity: 1,
             filter: "blur(0px)",
             y: 0,
-            duration: 20,
-            ease: 'power2.inOut'
-          }, 45);
-      }
-
-      if (yearRef.current) {
-        tl.fromTo(
-          yearRef.current,
-          {
-            opacity: 0,
-            filter: "blur(10px)",
-            y: 20
-          },
-          {
-            opacity: 1,
-            filter: "blur(0px)",
-            y: 0,
-            duration: 20,
-            ease: 'power2.inOut'
-          }, 50);
+            duration: 4,
+            stagger: .5,
+            ease: 'power1.inOut'
+          }, 8);
       }
 
       if (paragraphRef.current) {
@@ -118,14 +103,14 @@ export default function Scene({ sceneKey, id, index, image, isLast }: sceneProps
             filter: "blur(0px)",
             y: 0,
 
-            duration: 20,
+            duration: 6,
 
-            stagger: 4,
-            ease: "power2.inOut"
-          }, 75
+            stagger: .4,
+            ease: "power1.inOut"
+          }, 12
         );
 
-        tl.to({}, { duration: 65 }, 85);
+        tl.to({}, { duration: 4 }, 16);
       }
 
     }, containerRef);
@@ -143,10 +128,10 @@ export default function Scene({ sceneKey, id, index, image, isLast }: sceneProps
       ref={containerRef}
       className='absolute inset-0'
     >
-      <div className={`absolute top-20 z-20 flex flex-col gap-2 ${isArabic ? 'right-15 items-end' : 'left-15'}`}>
-        <h1 ref={titleRef} className="text-2xl text-white font-semibold">{t(`${sceneKey}.title`)}</h1>
-        <span ref={yearRef} className="text-lg text-white self-center">{t(`${sceneKey}.year`)}</span>
-        {/* <span ref={yearRef} className="text-lg text-white self-center">{id}</span> */}
+      <div ref={headerRef} className={`absolute top-20 z-20 flex flex-col gap-2 ${isArabic ? 'right-15 items-end' : 'left-15'}`}>
+        <h1 className="text-2xl text-white font-semibold">{t(`${sceneKey}.title`)}</h1>
+        <span className="text-lg text-white self-center">{t(`${sceneKey}.year`)}</span>
+        {/* <span className="text-lg text-white self-center">{id}</span> */}
       </div>
 
       <p
@@ -156,7 +141,6 @@ export default function Scene({ sceneKey, id, index, image, isLast }: sceneProps
       >
         {t(`${sceneKey}.paragraph`)}
       </p>
-
       <div
         ref={sceneRef}
         className={cn('absolute h-screen inset-0 bg-cover bg-center bg-no-repeat')}

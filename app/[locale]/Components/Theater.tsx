@@ -141,7 +141,7 @@ export default function Theater() {
 
           if (isLastScene) {
             return (
-              <div key={scene.id} className="relative z-40" style={{ height: '350vh' }}>
+              <div key={scene.id} className="relative z-40" style={{ height: '300vh' }}>
                 {shouldRender && (
                   <div className="sticky top-0 z-40 h-screen">
                     <Scene

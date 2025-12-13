@@ -6,11 +6,14 @@ import { Link } from '@/i18n/routing'
 import { cn } from './cn'
 import { HugeiconsIcon } from '@hugeicons/react'
 import { UserQuestion01Icon, AlertCircleIcon } from '@hugeicons/core-free-icons'
+import { useTranslations } from 'next-intl'
 
 export default function HomeNav() {
   const [questionHovered, setQuestionHovered] = useState(false)
   const [exclamationHovered, setExclamationHovered] = useState(false)
-
+  
+  const t = useTranslations('Common')
+  
   return (
     <nav className='flex items-center justify-between p-2'>
       <div className='flex items-center gap-4'>
@@ -70,18 +73,13 @@ export default function HomeNav() {
             }}
           >
             <div
-              className="bg-white/10 border border-white/20 rounded-2xl p-6 shadow-2xl transform"
-              // style={{
-              //   background: 'linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%)',
-              //   backdropFilter: 'blur(20px)',
-              //   WebkitBackdropFilter: 'blur(20px)',
-              // }}
+              className="bg-white/10 flex flex-col rtl:text-end border border-white/20 rounded-2xl p-6 shadow-2xl transform"
             >
-              <h3 className="text-black font-semibold text-lg mb-2 tracking-wide">
-                Disclaimer
+              <h3 className="text-white font-semibold text-lg mb-2 tracking-wide">
+                {t('disclaimer')}
               </h3>
-              <p className="text-white text-sm leading-relaxed">
-                This website presents historical information about Prophet Muhammads life based on traditional Islamic sources. While we strive for accuracy, interpretations may vary. Please consult qualified scholars for religious guidance.
+              <p className="text-white/80 text-sm leading-relaxed">
+                {t('disclaimertext')}
               </p>
             </div>
           </div>
